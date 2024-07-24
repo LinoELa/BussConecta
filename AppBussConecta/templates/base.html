@@ -1,17 +1,63 @@
+
+
+{% load static %}
+{% comment %} Cargamos los archivos estaticos  {% endcomment %}
+
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>BUSS CONECTA</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  </head>
-  <body>
-    <h1>BASICO CON HTML HECHO</h1>
     
+    {% comment %} nombre del autoho {% endcomment %}
+    <meta name='author' content ='Lino Ela'/>
+
+    {% comment %} fivicon {% endcomment %}
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}"/>
+
+    {% comment %} Google Fonts {% endcomment %}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
+    
+    {% comment %} Bootstrap {% endcomment %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    {% comment %} Vincular Styles de Css SECCION 1 (incluye Bootstrap) {% endcomment %}
+    <link href="{% static 'css/bootstrap_styles.css' %}" rel="stylesheet" />
+
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
+
+    
+    {% comment %} Titulo de la pagina {% endcomment %}
+    <title>BUSS CONECTA</title>
+</head>
+<body class='d-flex flex-column bg-light'>
+
+    {% comment %} incluir NAVBAR {% endcomment %}
+    {% include "navbar.html" %}
+
+
+
+        {% block content %}
+
+        {% endblock  %}
+
+
+    
+    {% comment %} incluir FOOTER  {% endcomment %}
+    {% include "footer.html" %}
+    
+
+
+
+
+
         
-    {% block content %}
-    {% endblock  %}
 
 
 
