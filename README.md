@@ -117,3 +117,4 @@ class SignUpForm(UserCreationForm):
 ```
 
 En este ejemplo, `SignUpForm` extiende `UserCreationForm`, y el constructor personalizado ajusta los campos del formulario para que tengan un estilo específico y mejoren la experiencia del usuario.
+
