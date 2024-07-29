@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+{% comment %} Extender la base.html aqui {% endcomment %}
+
+{% load static %}
+{% comment %} cargar las imagenes {% endcomment %}
+
+{% block content %}
+
+
+
+{% comment %} PART 4  Autentificacion del usuario {% endcomment %}
+{% if user.is_authenticated  %}
+
+<h1> Bienvenido </h1>
+<h1> Bienvenido </h1>
+<h1> Bienvenido </h1>
+<h1> Bienvenido </h1>
+<h1> Bienvenido </h1>
+<h1> Bienvenido </h1>
+
+
+
+{% else %}
+
+{% comment %} formulario para el log in {% endcomment %}
+    <main class="flex-shrink-0">
+
+        <!-- Page content-->
+        <section class="py-5">
+            <div class="container px-5">
+                <!-- Contact form-->
+                <div class="bg-light rounded-4 py-5 px-4 px-md-5">
+                    <div class="text-center mb-5">
+                        <div class="feature bg-primary bg-gradient-primary-to-secondary text-white rounded-3 mb-3"><i class="bi bi-door-open-fill"></i></div>
+                        <h1 class="fw-bolder">Iniciar Sesion</h1>
+                        {% comment %} <p class="lead fw-normal text-muted mb-0">Let's work together!</p> {% endcomment %}
+                    </div>
+                    <div class="row gx-5 justify-content-center">
+                        <div class="col-lg-8 col-xl-6">
+                                {% comment %} --- PART 4 - FORMULARIO LOG IN ---  {% endcomment %}
+                            <form method='POST' action={% url 'iniciar_sesion' %} id="contactForm">
+
+                                {% comment %} --- PART 4 ---  {% endcomment %}
+                                {% csrf_token %}
+
+                                <!-- nombre -->
+                                <div class="form-floating mb-3">
+                                    <input class="form-control" id="name" name='username' type="text" placeholder="Introduce tu nombre" required />
+                                    <label for="name">Nombre</label>
+                                </div>
+
+                                <br/>
+                                
+                                {% comment %} --- PART 4 ---  {% endcomment %}
+                                <!-- Contraseña -->
+                                <div class="form-floating mb-3">
+                                    <input class="form-control" id="email" name='password' type="password" placeholder="Intruduce tu contraseña " required />
+                                    <label for="email">Contraseña*</label>
+                                </div>
+
+                                <br/>
+    
+
+
+                                <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
+                                <!-- Submit Button-->
+                                <div class="d-grid">
+                                    <button class="btn btn-primary btn-lg" id="submitButton" type="submit">Iniciar sesión</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+{% endif %}
+
+
+
+
+{% comment %} FOOTER  {% endcomment %}
+
+
+<div class="bg-white fixed-bottom">
+
+    <div class="container">
+
+        <footer>
+
+            <div class="bg-white py-4 mt-auto">
+                <div class="container px-5">
+                    <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+                        <div class="col-auto"><div class="small m-0">Ela - Software Developer</div></div>
+                        <div class="col-auto mt-3">
+                            <a class="small text-body-secondary" href="https://github.com/LinoELa"><i class="bi bi-github"></i> 
+                            </a> <span class="mx-1">&middot;</span>
+
+                            <a class="small text-body-secondary" href="https://www.linkedin.com/in/lino-ela/"><i class="bi bi-linkedin"></i></a>
+                            <span class="mx-1">&middot;</span>
+
+                            <a class="medium text-body-secondary" href="mailto:jamelarry22@gmail.com?Subject=Paulino%20S%20Ela%20"><i class="bi bi-envelope"></i></a>
+                            <span class="mx-1">&middot;</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class='d-flex flex-wrap py-4 justify-content-around border-top'>
+                <p> <span class='fw-bold' style="color:black;"> &copy; 2024 Todos los derechos reservados </span></p>
+                <p> <span class='fw-bold' style="color:black;">Diseñado & Desarrollado - Paulino Salvador E. </span> </p>
+            </div>
+        </footer>
+    </div>
+</div>
+
+
+
+
+
+{% endblock  %}

@@ -41,11 +41,35 @@
     {% comment %} incluir NAVBAR {% endcomment %}
     {% include "navbar.html" %}
 
+    <br/>
 
 
-        {% block content %}
+    <div class='container'>
+      
+      {% comment %} PART 4 - logica para los MESSAGES aparezcan al iniciar sesion y al Cerrar sesion  {% endcomment %}
+      {% if messages %}
+        {% for mensaje_salientes in messages %}
+      
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
 
-        {% endblock  %}
+          <strong> {{ mensaje_salientes }} </strong>
+
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+        {% endfor %}
+      
+      {% endif %}
+
+
+
+
+    {% comment %} ---------------  {% endcomment %}
+    {% block content %}
+
+    {% endblock  %}
+
+  </div>
 
 
     

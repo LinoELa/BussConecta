@@ -13,5 +13,15 @@ from . import views
 
 urlpatterns = [
     # url home
-    path('', views.home , name='home'),
+    path('home', views.home , name='home'),
+    # inicio - 
+    path('', views.inicio , name='inicio'),
+
+    # PART 4 
+    path('iniciar_sesion', views.iniciar_sesion , name='iniciar_sesion'),
+    # PART 5
+    path('cerrar_sesion', views.cerrar_sesion , name='cerrar_sesion'),
+    # PART 6
+    path('registro', views.registro_user , name='registro'),
+    
 ]
