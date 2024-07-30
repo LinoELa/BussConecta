@@ -131,3 +131,30 @@ def registro_user(request):
         
 
     return render(request, 'registro.html', {'formulario':formulario})
+
+
+
+
+# --------------------------------  PART 10 MODELOS INDIVIDUALES : VISTA ----------------------------------------------#
+# PART 10.02 - pk :; que aparece en la url ().../ubicacion/1)
+def historial_ubicacion(request, pk):
+    # PART 10.03 Revisar si  estas logeado  o NO
+    if request.user.is_authenticated:
+        #PART 10.4 Revisar las ubicaciones 
+        # PART 10.04 "GET" - id = Es el id automatico de las migraciones (id que queremos coger)
+        ubicacion_historial = historial.objects.get(id=pk)
+        # PART 10.06 - historial de ubicaciones 
+        return render(request, 'ubicacion.html', {'ubicacion_historial':ubicacion_historial})
+    # PART 10.07 - En caso que no este autentificado
+    else:
+        messages.error(request,  'Tienes que iniciar session')
+        return redirect('inicio')
+
+
+# PART 10.08 ir a la plantilla ubicacion.html
+
+
+
+
+
+

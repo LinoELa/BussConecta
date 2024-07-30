@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% comment %} Extender la base.html aqui {% endcomment %}
+        <!-- PART 6 -->
+
+
+{% load static %}
+{% comment %} cargar las imagenes {% endcomment %}
+
+{% comment %} 10.09 {% endcomment %}
+{% block content %}
+
+{% comment %} PART 10.10 Ir a home.html para poner el link para var las ubicaciones {% endcomment %}
+
+{% comment %} PART 10.13 pasar la variable que contiene la informacion del modelo de historial ubicaciones {% endcomment %}
+{% comment %} {{ ubicacion_historial}} {% endcomment %}
+
+
+    {% comment %} 10.14 Traer toda la informacion de la histial ubicaciones {% endcomment %}
+    {% comment %} 10.14 FINAL {% endcomment %}
+    {{ ubicacion_historial.inicio}}<br/>
+    {{ ubicacion_historial.final}}<br/>
+    {{ ubicacion_historial.poste_1}}<br/>
+    {{ ubicacion_historial.poste_2}}<br/>
+    {{ ubicacion_historial.poste_3}}<br/>
+    {{ ubicacion_historial.notas}}<br/> 
+    {{ ubicacion_historial.id}}<br/>
+    {{ ubicacion_historial.tiempo_creado}}<br/>
+
+
+
+{% endblock  %}

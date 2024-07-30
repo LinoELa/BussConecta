@@ -9,7 +9,13 @@
 - PART 6 - Register User
 - PART 7 - Database Model
 - PART 8 - Ver Modelos (historial) en pantalla 
-- PART 9 - 
+- PART 9 - Layout - Bootstrap Table
+- PART 10 - Modelos (historial) Individuales 
+- PART 11 - 
+- PART 12 - 
+- PART 13 - 
+- PART 14 - 
+- PART 15 - 
 
 
 Despues de acabar con la parte basica que es mas en front end ahora hay que empezar hacer la web mas dinamica 

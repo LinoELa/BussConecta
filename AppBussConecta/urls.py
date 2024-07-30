@@ -23,5 +23,7 @@ urlpatterns = [
     path('cerrar_sesion', views.cerrar_sesion , name='cerrar_sesion'),
     # PART 6
     path('registro', views.registro_user , name='registro'),
+    # PART 10.01 - Ubicacion : porque quiero que en la URL apareza (.../ubicacion/1)
+    path('ubicacion/<int:pk>', views.historial_ubicacion, name='ubicacion'),
     
 ]

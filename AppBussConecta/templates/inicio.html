@@ -9,6 +9,31 @@
 
 {% block content  %}
 
+{% comment %} PART : 10 SI esta autentificado  {% endcomment %}
+{% if user.is_authenticated %}
+
+<!-- Error 404 Template 1 -  -->
+<section class="mx-auto vh-100 d-flex justify-content-center align-items-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="text-center">
+            <h2 class="d-flex justify-content-center align-items-center gap-2">
+              <span class="display-1 fw-bold">4</span>
+              <i class="bi bi-exclamation-circle-fill text-danger display-4"></i>
+              <span class="display-1 fw-bold bsb-flip-h">4</span>
+            </h2>
+            <h3 class="h2 mb-2">Oops! Estas perdido</h3>
+            <p class="mb-5">No se ha encontrado la página que busca</p>
+            <a class="btn bsb-btn-5xl btn-dark rounded-pill px-5 fs-6 m-0" href="{% url 'home' %}" role="button">Volver a Inicio</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% comment %} PART 10 Cuando no han iniciado session {% endcomment %}
+{% else %}
 
 <main class="flex-shrink-0">
 
@@ -230,7 +255,7 @@
     
     
     
-    
+    {% endif %} 
     
     <div class="bg-white">
     
@@ -256,7 +281,7 @@
                     </div>
                 </div>
     
-    
+
                 <div class='d-flex flex-wrap py-4 justify-content-around border-top'>
                     <p> <span class='fw-bold' style="color:black;"> &copy; 2024 Todos los derechos reservados </span></p>
                     <p> <span class='fw-bold' style="color:black;">Diseñado & Desarrollado - Paulino Salvador E. </span> </p>
