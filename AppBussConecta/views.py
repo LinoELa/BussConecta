@@ -11,6 +11,10 @@ from django.contrib import messages
 # PARTE 6 - Importar el formualario de registro
 from .formulario_registro import FormRegistro
 
+# PART 8.02
+from .models import historial
+
+
 
 
 
@@ -25,7 +29,14 @@ def inicio(request):
 # --------------------------------- HOME  ----------------------------------------------#
 
 def home(request):
-    return render(request, 'home.html' , {})
+    # PART 8.01 - Queremos que aparezca solo cuando se ha iniciado session
+    # PART 8.03 - Coge todo de la tabla de modelos  y lo asigna a la variable histora_record
+    historia_records = historial.objects.all()
+
+    # PART 8.03 - le ppasamos historia_records para que : que se pueda ver  ver historial en pantalla 
+    # PART 8.03 - y cuando no postea nada pueda ver el historial( ahora variable : historia_record) tambien
+    #Part 3 : 
+    return render(request, 'home.html' , {'historia_records':historia_records})
 
 
 
@@ -57,6 +68,8 @@ def iniciar_sesion(request):
         #PART 4 - mensaje de error si es incorecto
         else:
             messages.error(request, 'Error al iniciar session. Porfavor intentalo de nuevo')
+            # PART 4 - NO USO EL REDIRECT porque data un error 
+            # return redirect(request, 'iniciar_sesion.html')
 
     # PART 4 - no pongo 'ELSE' - para eviarar el error de 
     # ERROR : ValueError at /iniciar_sesion / 

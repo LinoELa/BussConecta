@@ -4,11 +4,42 @@
 {% load static %}
 {% comment %} cargar las imagenes {% endcomment %}
 
-
-
 {% block content %}
 
-<h1> HOME BIENVENIDO </h1>
+
+
+
+    {% comment %} PART 8.04  {% endcomment %}   
+    {% if user.is_authenticated %}
+
+
+    <h1> HOME BIENVENIDO </h1>
+
+    {% comment %} PART 8.05 par que apareza en pantalla {% endcomment %}
+        {% if historia_records %}
+            {% for cada_historial_de_records in historia_records %}
+                {% comment %} PART 8.06 llamar a los modelos 1 x 1 : puedo ponernos en el orden que quiera  {% endcomment %}
+                {{ cada_historial_de_records}}<br/>
+                {{ cada_historial_de_records.inicio}}<br/>
+                {{ cada_historial_de_records.final}}<br/>
+                {{ cada_historial_de_records.poste_1}}<br/>
+                {{ cada_historial_de_records.poste_2}}<br/>
+                {{ cada_historial_de_records.poste_3}}<br/>
+                {{ cada_historial_de_records.notas}}<br/>
+                {% comment %} PART 8.07 - Importante el ID {% endcomment %}
+                {{ cada_historial_de_records.id}}<br/>
+
+            
+            {% endfor %}
+    
+        {% endif %}
+
+    {% else %}
+
+
+
+    {% endif %}
+
 
 
 {% endblock  %}

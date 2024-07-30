@@ -8,7 +8,7 @@
 - PART 5 - Log Out
 - PART 6 - Register User
 - PART 7 - Database Model
-- PART 8 - 
+- PART 8 - Ver Modelos (historial) en pantalla 
 - PART 9 - 
 
 
@@ -118,3 +118,64 @@ class SignUpForm(UserCreationForm):
 
 En este ejemplo, `SignUpForm` extiende `UserCreationForm`, y el constructor personalizado ajusta los campos del formulario para que tengan un estilo específico y mejoren la experiencia del usuario.
 
+
+
+## MODELOS
+
+
+El método `__str__` en una clase de modelo de Django define cómo se debe representar la instancia del modelo como una cadena de texto. Esto es útil para facilitar la lectura y comprensión de las instancias del modelo cuando se imprimen en la consola, se muestran en el admin de Django, o se utilizan en otras interfaces de usuario.
+
+En tu caso, el método `__str__` devuelve una cadena que combina los valores de los campos `inicio` y `final` de la instancia del modelo `Historial`. Aquí está el significado específico de ese método:
+
+```python
+def __str__(self):
+    return f'{self.inicio} {self.final}'
+```
+
+Explicación detallada:
+
+1. `def __str__(self):`:
+   - Esto define el método especial `__str__` para la clase. El método toma `self` como argumento, que es una referencia a la instancia actual del objeto.
+
+2. `return f'{self.inicio} {self.final}'`:
+   - Esto utiliza una f-string (cadena formateada) para crear una cadena de texto que incluye los valores de los campos `inicio` y `final` de la instancia del modelo.
+   - `self.inicio` se refiere al valor del campo `inicio` de la instancia actual.
+   - `self.final` se refiere al valor del campo `final` de la instancia actual.
+   - La cadena resultante tendrá el valor de `inicio` seguido de un espacio y luego el valor de `final`.
+
+Por ejemplo, si tienes una instancia del modelo `Historial` con `inicio='InicioEjemplo'` y `final='FinalEjemplo'`, el método `__str__` devolverá la cadena `'InicioEjemplo FinalEjemplo'`.
+
+Este método es especialmente útil para:
+
+- Mostrar una representación legible de las instancias en el administrador de Django.
+- Facilitar la depuración al imprimir instancias del modelo.
+- Proporcionar una cadena significativa cuando se convierte una instancia a texto.
+
+Aquí está tu modelo completo con el método `__str__` incluido:
+
+```python
+from django.core.validators import MinValueValidator, MaxValueValidator
+from django.db import models
+
+class Historial(models.Model):
+    # 7.02 historial o informaicon de la fecha , para saber la hora que se ha creado 
+    tiempo_creado = models.DateTimeField(auto_now_add=True)
+
+    # 7.03 Todo lo que queremos guardar 
+    inicio = models.CharField(max_length=50)
+    final = models.CharField(max_length=50)
+
+    # 7.04 Pongo IntegerField() porque existe : son los números de postes
+    # 7.04 Validator funciona como rangos 
+    poste_1 = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(1000000)], blank=True, null=True)
+    poste_2 = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(1000000)])
+    poste_3 = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(1000000)])
+
+    # 7.05 notas 
+    notas = models.CharField(max_length=500, blank=True, null=True)
+
+    def __str__(self):
+        return f'{self.inicio} {self.final}'
+```
+
+Con este método `__str__`, cuando imprimas una instancia de `Historial` o la veas en el administrador de Django, verás una representación legible basada en los campos `inicio` y `final`.
