@@ -9,9 +9,9 @@
 - PART 6 - Register User
 - PART 7 - Database Model
 - PART 8 - Ver Modelos (historial) en pantalla 
-- PART 9 - Layout - Bootstrap Table
+- PART 9 - Layout (Modelo historial) - Bootstrap Table
 - PART 10 - Modelos (historial) Individuales 
-- PART 11 - 
+- PART 11 - Layout (vista : historial_ubicacion ) - Bootstrap
 - PART 12 - 
 - PART 13 - 
 - PART 14 - 

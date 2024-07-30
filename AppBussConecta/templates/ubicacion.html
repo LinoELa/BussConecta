@@ -17,14 +17,128 @@
 
     {% comment %} 10.14 Traer toda la informacion de la histial ubicaciones {% endcomment %}
     {% comment %} 10.14 FINAL {% endcomment %}
-    {{ ubicacion_historial.inicio}}<br/>
-    {{ ubicacion_historial.final}}<br/>
-    {{ ubicacion_historial.poste_1}}<br/>
-    {{ ubicacion_historial.poste_2}}<br/>
-    {{ ubicacion_historial.poste_3}}<br/>
-    {{ ubicacion_historial.notas}}<br/> 
-    {{ ubicacion_historial.id}}<br/>
-    {{ ubicacion_historial.tiempo_creado}}<br/>
+    {% comment %} {{ ubicacion_historial.inicio}}<br/> {% endcomment %}
+    {% comment %} {{ ubicacion_historial.final}}<br/> {% endcomment %}
+    {% comment %} {{ ubicacion_historial.poste_1}}<br/> {% endcomment %}
+    {% comment %} {{ ubicacion_historial.poste_2}}<br/> {% endcomment %}
+    {% comment %} {{ ubicacion_historial.poste_3}}<br/> {% endcomment %}
+    {% comment %} {{ ubicacion_historial.notas}}<br/>  {% endcomment %}
+    {% comment %} {{ ubicacion_historial.id}}<br/> {% endcomment %}
+    {% comment %} {{ ubicacion_historial.tiempo_creado}}<br/> {% endcomment %}
+
+    {% comment %} ----------------------------------------------------- {% endcomment %}
+
+
+
+
+    <main class="flex-shrink-0">
+
+        <!-- Page Content-->
+        <div class="container px-5 ">
+
+            <div class="row gx-5 justify-content-center">
+                <div class="col-lg-11 col-xl-9 col-xxl-8">
+                    <!-- Experience Section-->
+                    <section>
+                         <!-- Inicio - Final -->
+                        <div class="card shadow border-0 rounded-4 mb-3 ">
+                            <div class="card-body d-flex justify-content-center align-items-center text-center p-5" style="height: 100px;">
+                                <div>
+                                    <h5 class="card-title fw-bold fs-3">{{ ubicacion_historial.inicio}} <span> - </span> {{ ubicacion_historial.final}} </h5>
+                                </div>
+                            </div>
+                        </div>
+                    </section> 
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <br/>
+    <br/>
+
+    
+    {% comment %} ----------------------------------------------------- {% endcomment %}
+
+
+
+    <div class = 'container'>
+
+
+        {% comment %} PART 9.01 Tablas  {% endcomment %}
+        <table class="table table-hover table-bordered">
+            <thead class="table-dark">
+              <tr>
+                <th scope="col">linea</th>
+                <th scope="col">Minutos</th>
+                <th scope="col">Destino a</th>
+              </tr>
+            </thead>
+    
+            <tbody>
+                    {% comment %} PART 9.02 FINAL tablas con Booststrap {% endcomment %}
+                    
+                    <tr>
+                        {% comment %} PARA NO DEJARLO VARIO : SCRAPING VIENE AQUI {% endcomment %}
+                        <td> {{ ubicacion_historial.inicio}} </td>
+    
+                        <td> {{ ubicacion_historial.final}} </td>
+
+                        <td> {{ ubicacion_historial.id}}</td>
+                        
+                    </tr>
+            </tbody>
+    
+        </table>
+
+        <div class='align-self-start '>
+            <a href="#" class="btn btn-primary mt-3" id="toggleTableButton_2">Bus llegada</a>
+        </div>
+
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+
+    </div>
+    
+
+
+
+        
+    <main class="flex-shrink-0">
+
+        <!-- Page Content-->
+        <div class="container px-5">
+
+            <div class="row gx-5 justify-content-center">
+                <div class="col-lg-11 col-xl-9 col-xxl-8">
+                    <!-- Experience Section-->
+                    <section>               
+                        <!-- Experience Card 2-->
+                        <div class="card shadow border-0 rounded-4 mb-5">
+                            <div class="card-body p-4">
+                                <div class="row align-items-center">
+                                    <div class="col"><div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus laudantium, voluptatem quis repellendus eaque sit animi illo ipsam amet officiis corporis sed aliquam non voluptate corrupti excepturi maxime porro fuga.</div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+
+
+    {% comment %} ------------------------------------------------------- {% endcomment %}
+
+    {% comment %} 11.01 Buscar el dinero en boostrasp  {% endcomment %}
+    
+
+
 
 
 
