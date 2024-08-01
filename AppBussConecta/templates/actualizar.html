@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+<!-- TRAER CASI TODO DE  AGREGAR RECOR -->
+
+
+{% load static %}
+{% comment %} cargar las imagenes {% endcomment %}
+
+
+{% block content %}
+
+<!-- 14.04 plantilla - Traer plantilla de agregar -->
+
+
+{% if user.is_authenticated  %}
+
+{% comment %} formulario para actualizar {% endcomment %}
+<main class="flex-shrink-0">
+
+    <!-- Page content-->
+    <section class="">
+        <div class="container px-5 mb-5">
+            <!-- Contact form-->
+            <div class="bg-light rounded-4 px-md-5">
+                <div class="text-center mb-5">
+                    <div class="feature bg-primary bg-gradient-primary-to-secondary text-white rounded-3 "><i class="bi bi-arrow-clockwise"></i></div>
+                    <h1 class="fw-bolder">Actualizar Contenido</h1>
+                </div>
+                <div class="row gx-5 justify-content-center">
+                    <div class="col-lg-8 col-xl-6">
+                        {% comment %} --- PART 14.05 no hace falta la accion --- {% endcomment %}
+                        <form method='POST' id="contactForm">
+
+
+                            {% csrf_token %}
+
+                            <!-- 'formulario_actualizar' - en la funcion es :
+                                                                     {'formulario_actualizar':formulario_actualizar} -->
+                            {{ formulario_actualizar.as_p }}
+
+
+                            <!-- Submit Button-->
+                            <div class="d-grid">
+                                <button class="btn btn-primary btn-lg" id="submitButton" type="submit">Actualizar
+                                    Contenido</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+{% comment %} PART 13.09 Creamos nuesto formulario en formularo_registro_py {% endcomment %}
+
+{% else %}
+
+
+<!-- Error 404 Template 1 -  -->
+<section class="mx-auto vh-100 d-flex justify-content-center align-items-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="text-center">
+                    <h2 class="d-flex justify-content-center align-items-center gap-2">
+                        <span class="display-1 fw-bold">4</span>
+                        <i class="bi bi-exclamation-circle-fill text-danger display-4"></i>
+                        <span class="display-1 fw-bold bsb-flip-h">4</span>
+                    </h2>
+                    <h3 class="h2 mb-2">Oops! Estas perdido</h3>
+                    <p class="mb-5">No se ha encontrado la página que busca</p>
+                    <a class="btn bsb-btn-5xl btn-dark rounded-pill px-5 fs-6 m-0" href="{% url 'home' %}"
+                        role="button">Volver a Inicio</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endif %}
+
+{% endblock %}

@@ -6,6 +6,9 @@ from django.contrib.auth.models import User
 
 from django import forms
 
+from .models import historial
+
+
 
 
 # PART 6 - Informacion quiero recopilar 
@@ -39,3 +42,68 @@ class FormRegistro(UserCreationForm):
         self.fields['password2'].widget.attrs['placeholder'] = 'Confirmar Contraseña*'
         self.fields['password2'].label = ''
         self.fields['password2'].help_text = '<span class="form-text text-muted"><small>Introduzca la misma contraseña que antes, para la verificación</small></span>'	
+
+
+
+
+
+
+# ------------------ 
+# PART 13.10 Crear formulario
+
+#  PART 13.11 usar  ModelForm
+class FormAgregar(forms.ModelForm):
+
+    # 13.12 Como quiero que aparezcan 
+
+    inicio = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder":"Inicio", "class":"form-control"}), label="")
+
+    final = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder":"Final", "class":"form-control"}), label="")
+
+# ------------------ Para hacer que no sea obligatario y que pueda pasar  el argumento vacio como un None
+
+    poste_1 = forms.CharField(required=True, widget=forms.NumberInput(attrs={"placeholder":"Numero Poste ", "class":"form-control"}), label="")
+
+    poste_2 = forms.CharField(required=False, widget=forms.NumberInput(attrs={"placeholder":"Numero Poste ", "class":"form-control"}), label="")
+
+    poste_3 = forms.CharField(required=False, widget=forms.NumberInput(attrs={"placeholder":"Numero Poste ", "class":"form-control"}), label="")
+
+    notas = forms.CharField(required=False, widget=forms.widgets.Textarea(attrs={"placeholder":"Notas", "class":"form-control"}), label="")
+
+
+    #  13.13 Asignar la clase Meta y decir que modelo queremos usar 
+
+    class Meta:
+        model = historial
+        # la (,) al final es importante
+        exclude = ('user',)
+
+
+    #  CLASE PARA QUE PASE UN None en ves de VACIO -----------
+    # Poste 2 
+    def limpiar_poste_2(self):
+        datos = self.cleaned_data('poste_2')
+        if datos == '':
+            return None
+        return datos
+    
+    # Poste 3 
+    def limpiar_poste_3(self):
+        datos = self.cleaned_data('poste_3')
+        
+        if datos == '':
+            return None
+        
+        return datos
+
+
+    # 13.14 Importamos el modelo que acabamos de clear a view.py
+
+
+
+
+    """
+    El error Field 'poste_2' expected a number but got '' ocurre porque Django espera un 
+    número en el campo poste_2, pero recibe una cadena vacía (''). Esto sucede porque aunque poste_2 está definido como
+    blank=True y null=True, el formulario de Django está enviando una cadena vacía en lugar de None.
+    """

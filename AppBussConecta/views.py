@@ -15,6 +15,10 @@ from .formulario_registro import FormRegistro
 from .models import historial
 
 
+# PART 13.14 
+from .formulario_registro import FormAgregar
+
+
 
 
 
@@ -136,6 +140,7 @@ def registro_user(request):
 
 
 # --------------------------------  PART 10 MODELOS INDIVIDUALES : VISTA ----------------------------------------------#
+
 # PART 10.02 - pk :; que aparece en la url ().../ubicacion/1)
 def historial_ubicacion(request, pk):
     # PART 10.03 Revisar si  estas logeado  o NO
@@ -157,4 +162,82 @@ def historial_ubicacion(request, pk):
 
 
 
+
+# --------------------------------  PART 12 BORRAR UBICACION ----------------------------------------------#
+
+
+# PART 12.01
+
+def borrar_ubi_historial(request, pk):
+
+    # PART 12.03 Revisar si  estas logeado  o NO
+    if request.user.is_authenticated:
+
+        # part 12.02 Borrar funcion
+        delete_it = historial.objects.get(id=pk)
+        delete_it.delete()
+
+        # Part 12.03
+        messages.success(request, 'Registro eliminado!')
+        return redirect('home')
+    else:
+        messages.error(request, 'Debe iniciar sesión p')
+        return redirect('inicio')
+    
+# PART 12.04 id a ubicacion.html para poner el link 
+
+
+# --------------------------------  PART 13 AGREGAR UBICACION ----------------------------------------------#
+
+# PART 13.01
+def agregar_ubi_historial(request):
+
+    # PART 13.15 
+    formulario_agragar = FormAgregar(request.POST or None)
+    # PART 13.16 
+    if request.user.is_authenticated:
+
+        if request.method == 'POST':
+            if formulario_agragar.is_valid():
+                formulario_agragar.save()
+
+                messages.success(request, 'Contenido Agregado')
+                return redirect ('home')
+            
+ 
+        # PART 13.02 - Despues de poner pass cramos la plantilla agregar.html
+        return render (request, 'agregar.html', {'formulario':formulario_agragar}) 
+    else:
+        messages.error(request, 'Debe iniciar sesión')
+        return redirect ('inicio')
+
+# --------------------------------  PART 14 ACTUALIZAR UBICACION ----------------------------------------------#
+
+# 14.02 EL 14.01 Esta en ubicacion.html
+def actualizar_ubi_historial(request, pk):
+
+    # 14.03 
+    if request.user.is_authenticated:
+
+        ubicacion_actual = historial.objects.get(id=pk)
+        #  {POST} = Si hacen algo , {None} = Si no hacen nada  , {instance} = que aparezca el id a cambiar 
+        formulario_actualizar = FormAgregar(request.POST or None, instance=ubicacion_actual)
+
+        if formulario_actualizar.is_valid():
+            formulario_actualizar.save()
+            
+            messages.success(request, 'Contenido Actualizado!')
+            return redirect ('home')
+        
+        return render (request, 'actualizar.html', {'formulario_actualizar':formulario_actualizar}) 
+    else:
+        messages.error(request, 'Debe iniciar sesión')
+        return redirect ('inicio')
+
+
+
+
+
+
+    
 

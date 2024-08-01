@@ -12,9 +12,9 @@
 - PART 9 - Layout (Modelo historial) - Bootstrap Table
 - PART 10 - Modelos (historial) Individuales 
 - PART 11 - Layout (vista : historial_ubicacion ) - Bootstrap
-- PART 12 - 
-- PART 13 - 
-- PART 14 - 
+- PART 12 - Borrar Modelos (historial_ubicaciones)
+- PART 13 - Agregar o Añadir nuevo (historial ubicaciones)
+- PART 14 - Actualizar (historial ubicaciones )
 - PART 15 - 
 
 
@@ -185,3 +185,115 @@ class Historial(models.Model):
 ```
 
 Con este método `__str__`, cuando imprimas una instancia de `Historial` o la veas en el administrador de Django, verás una representación legible basada en los campos `inicio` y `final`.
+
+
+
+
+
+### Error para agregar formulario 
+
+Field 'poste_2' expected a number but got ''.
+<!--  -->
+
+El error `Field 'poste_2' expected a number but got ''` ocurre porque Django espera un número en el campo `poste_2`, pero recibe una cadena vacía (`''`). Esto sucede porque aunque `poste_2` está definido como `blank=True` y `null=True`, el formulario de Django está enviando una cadena vacía en lugar de `None`.
+
+Para solucionar esto, puedes hacer lo siguiente:
+
+1. **Usar el `IntegerField` con el parámetro `required=False` en el formulario**:
+   Asegúrate de que el formulario de Django esté configurado para aceptar campos vacíos para `poste_2`.
+
+2. **Limpiar el valor en el método `clean` del formulario**:
+   Puedes sobrescribir el método `clean` en el formulario de Django para convertir las cadenas vacías en `None`.
+
+Aquí tienes un ejemplo de cómo hacerlo:
+
+### Modelo Django
+
+```python
+from django.core.validators import MinValueValidator, MaxValueValidator
+from django.db import models
+
+class Historial(models.Model):
+    poste_1 = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(1000000)])
+    poste_2 = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(1000000)], blank=True, null=True)
+```
+
+### Formulario Django
+
+```python
+from django import forms
+from .models import Historial
+
+class HistorialForm(forms.ModelForm):
+    class Meta:
+        model = Historial
+        fields = ['poste_1', 'poste_2']
+        widgets = {
+            'poste_1': forms.NumberInput(attrs={'class': 'form-control'}),
+            'poste_2': forms.NumberInput(attrs={'class': 'form-control'}),
+        }
+
+    def clean_poste_2(self):
+        data = self.cleaned_data.get('poste_2')
+        if data == '':
+            return None
+        return data
+```
+
+### Vista Django
+
+Asegúrate de que tu vista esté usando el formulario correctamente:
+
+```python
+from django.shortcuts import render, redirect
+from .forms import HistorialForm
+
+def agregar_historial(request):
+    if request.method == 'POST':
+        form = HistorialForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('success_url')  # Reemplaza 'success_url' con la URL adecuada
+    else:
+        form = HistorialForm()
+    return render(request, 'template_name.html', {'form': form})
+```
+
+### Plantilla HTML
+
+Asegúrate de que tu plantilla esté mostrando el formulario correctamente:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Historial</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Agregar Historial</h1>
+        <form method="POST" action="{% url 'agregar_historial' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+    </div>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+```
+
+### Explicación
+
+1. **Modelo**: Define los campos `poste_1` y `poste_2` en tu modelo, asegurándote de que `poste_2` tenga `blank=True` y `null=True`.
+
+2. **Formulario**: En el formulario de Django (`HistorialForm`), usa `clean_poste_2` para convertir las cadenas vacías en `None`.
+
+3. **Vista**: Asegúrate de que tu vista maneje correctamente la lógica del formulario.
+
+4. **Plantilla**: Muestra el formulario en tu plantilla HTML utilizando Bootstrap para el estilo.
+
+Esto debería resolver el problema y permitir que `poste_2` se mantenga en blanco sin causar errores.

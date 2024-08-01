@@ -9,80 +9,87 @@
 
 
 
-    {% comment %} PART 8.04  {% endcomment %}   
-    {% if user.is_authenticated %}
+{% comment %} PART 8.04 {% endcomment %}
+{% if user.is_authenticated %}
 
-    {% comment %} PART 9.01 Tablas  {% endcomment %}
-    <table class="table table-hover table-bordered">
-        <thead class="table-dark">
-          <tr>
-            <th scope="col">Inicio</th>
-            <th scope="col">Final</th>
-            {% comment %} <th scope="col">Porte 1</th> {% endcomment %}
-            {% comment %} <th scope="col">Poste 2 </th> {% endcomment %}
-            {% comment %} <th scope="col">Poste 3 </th> {% endcomment %}
-            {% comment %} <th scope="col">Nota </th> {% endcomment %}
-            {% comment %} <th scope="col">tiempo creado </th> {% endcomment %}
-            <th scope="col">ID</th>
-            {% comment %} <th scope="col">Creado</th> {% endcomment %}
-          </tr>
-        </thead>
+<!-- 13.05 Agregar el link  para que se vea -->
+<div class='align-self-start '>
+  <a href="{% url 'agregar' %}" class="btn btn-success mt-3 fw-bold">Agregar Contacto </a>
+</div> 
 
+<br/>
 
-        <tbody>
-
-            {% if historia_records %}
-                {% for cada_historial_de_records in historia_records %}
-                {% comment %} PART 9.02 FINAL tablas con Booststrap {% endcomment %}
-                
-                <tr>
-                    {% comment %} PART 10.11 Poner el link {% endcomment %}
-                    <td> {{ cada_historial_de_records.inicio}} </td>
-
-                    <td> {{ cada_historial_de_records.final}} </td>
-                    {% comment %} <td> {{ cada_historial_de_records.poste_1}} </td> {% endcomment %}
-                    {% comment %} <td> {{ cada_historial_de_records.poste_2}} </td> {% endcomment %}
-                    {% comment %} <td> {{ cada_historial_de_records.poste_3}} </td> {% endcomment %}
-                    {% comment %} <td> {{ cada_historial_de_records.nota}} </td> {% endcomment %}
-                    {% comment %} <td> {{ cada_historial_de_records.tiempo_creado}} </td> {% endcomment %}
-
-                    {% comment %} PART 10.11 Poner el link  {% endcomment %}
-                    {% comment %} PART 10.12 [ubicacion.html] Poner el link {% endcomment %}
-                    <td> <a href="{% url 'ubicacion' cada_historial_de_records.id  %}"> {{ cada_historial_de_records.id}} </a></td>
-
-                    {% comment %} <td> {{ cada_historial_de_records.id}} </td> {% endcomment %}
-                    
-                </tr>
-        </tbody>
-            
-          {% comment %} PART 8.05 par que apareza en pantalla {% endcomment %}
-          
-          {% comment %} PART 8.06 llamar a los modelos 1 x 1 : puedo ponernos en el orden que quiera  {% endcomment %}
-                {% comment %} <th scope="row">1</th>
-                {{ cada_historial_de_records}}<br/>
-                {{ cada_historial_de_records.inicio}}<br/>
-                {{ cada_historial_de_records.final}}<br/>
-                {{ cada_historial_de_records.poste_1}}<br/>
-                {{ cada_historial_de_records.poste_2}}<br/>
-                {{ cada_historial_de_records.poste_3}}<br/>
-                {{ cada_historial_de_records.notas}}<br/> {% endcomment %}
-                {% comment %} PART 8.07 - Importante el ID y Tiempo Creado {% endcomment %}
-                {% comment %} {{ cada_historial_de_records.id}}<br/> {% endcomment %}
-                {% comment %} {{ cada_historial_de_records.tiempo_creado}}<br/> {% endcomment %}
-        {% comment %} </tr> {% endcomment %}
-          
-          
-                {% endfor %}
-          
-            {% endif %}
-
-    </table>
-
-    {% else %}
+{% comment %} PART 9.01 Tablas {% endcomment %}
+<table class="table table-hover table-bordered">
+  <thead class="table-dark">
+    <tr>
+      <th scope="col">Inicio</th>
+      <th scope="col">Final</th>
+      <th scope="col">ID</th>
+      {% comment %} <th scope="col">Creado</th> {% endcomment %}
+    </tr>
+  </thead>
 
 
+  <tbody>
 
-    {% endif %}
+    {% if historia_records %}
+    {% for cada_historial_de_records in historia_records %}
+    {% comment %} PART 9.02 FINAL tablas con Booststrap {% endcomment %}
+
+    <tr>
+      {% comment %} PART 10.11 Poner el link {% endcomment %}
+      <td>
+        <!-- TD : dento de un link-->
+        <a href="{% url 'ubicacion' cada_historial_de_records.id %}" style="text-decoration:none;">
+          {{ cada_historial_de_records.inicio}}
+        </a>
+
+      </td>
+      <td>
+        <a href="{% url 'ubicacion' cada_historial_de_records.id  %}" style="text-decoration:none;">
+          {{ cada_historial_de_records.final}}
+        </a>
+      </td>
+
+      {% comment %} PART 10.11 Poner el link {% endcomment %}
+      {% comment %} PART 10.12 [ubicacion.html] Poner el link {% endcomment %}
+      <td> {{ cada_historial_de_records.id}} </a></td>
+
+      {% comment %} <td> {{ cada_historial_de_records.id}} </td> {% endcomment %}
+      </a>
+    </tr>
+  </tbody>
+
+  {% comment %} PART 8.05 par que apareza en pantalla {% endcomment %}
+
+  {% comment %} PART 8.06 llamar a los modelos 1 x 1 : puedo ponernos en el orden que quiera {% endcomment %}
+  {% comment %} <th scope="row">1</th>
+  {{ cada_historial_de_records}}<br />
+  {{ cada_historial_de_records.inicio}}<br />
+  {{ cada_historial_de_records.final}}<br />
+  {{ cada_historial_de_records.poste_1}}<br />
+  {{ cada_historial_de_records.poste_2}}<br />
+  {{ cada_historial_de_records.poste_3}}<br />
+  {{ cada_historial_de_records.notas}}<br /> {% endcomment %}
+  {% comment %} PART 8.07 - Importante el ID y Tiempo Creado {% endcomment %}
+  {% comment %} {{ cada_historial_de_records.id}}<br /> {% endcomment %}
+  {% comment %} {{ cada_historial_de_records.tiempo_creado}}<br /> {% endcomment %}
+  {% comment %} </tr> {% endcomment %}
+
+
+  {% endfor %}
+
+  {% endif %}
+
+</table>
+
+
+{% else %}
+
+
+
+{% endif %}
 
 
 
