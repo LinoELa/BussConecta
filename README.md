@@ -297,3 +297,119 @@ Asegúrate de que tu plantilla esté mostrando el formulario correctamente:
 4. **Plantilla**: Muestra el formulario en tu plantilla HTML utilizando Bootstrap para el estilo.
 
 Esto debería resolver el problema y permitir que `poste_2` se mantenga en blanco sin causar errores.
+
+
+
+## Informaicion 
+
+tengo esta funcion y quiero que haya un bucle que permita recorer varios objetos 
+
+si poste_1_str es es int que que realice la primera operacion asta   datos_1 = list(zip(linea_1, destino_1, tiempo_1)), luego si poste_2_str es numero que realice la operacion asta  datos_2 = list(zip(linea_1, destino_1, tiempo_1)) y su ya no no hay mas postes__str pues que pare 
+
+
+
+
+def historial_ubicacion(request, pk):
+    # PART 10.03 Revisar si  estas logeado  o NO
+    if request.user.is_authenticated:
+        # ubicacion_historial = historial.objects.get(id=pk)
+        
+        # --------------------------- POSTE 1  -------------------------------------
+
+        # ----- 
+
+        ubicacion_historial = get_object_or_404(historial, id=pk)
+
+        poste_1_str = ubicacion_historial.poste_1  # Acceder al campo poste_1
+        try:
+            poste_1_int = int(poste_1_str)  # Convertir a entero
+
+        except ValueError:
+            poste_1_int = None  # Manejar el caso donde la conversión falle
+            print(f"Error: 'poste_1' value '{poste_1_str}' is not an integer")
+        
+        print(f"Valor de poste_1_str: {poste_1_str} (tipo: {type(poste_1_str)})")
+        print(f"Valor de poste_1_int: {poste_1_int} (tipo: {type(poste_1_int)})")
+
+
+
+        url_1 = f"https://zaragoza-pasobus.avanzagrupo.com/frm_esquemaparadatime.php?poste={poste_1_int}"
+
+        response_1 = requests.get(url_1)
+
+        response_1.encoding = response_1.apparent_encoding
+
+        datos_1 = response_1.text
+
+        soup = BeautifulSoup(datos_1, 'lxml')
+
+        digital_1 = [td.get_text() for td in soup.find_all('td', class_='digital')
+            if not td.find('svg') and td.attrs and td.get_text().strip() != ''
+    ]
+        mi_array_1  = digital_1
+        
+        linea_1 = mi_array_1[0::3]  
+        destino_1 = mi_array_1[1::3]  
+        tiempo_1 = mi_array_1[2::3]  
+
+        datos_1 = list(zip(linea_1, destino_1, tiempo_1))
+
+        # ----------------------------(POSTE 2 ) --------- SEGUNDA TABLA --------------
+
+        ubicacion_historial_2 = get_object_or_404(historial, id=pk)
+
+        poste_2_str = ubicacion_historial_2.poste_2  # Acceder al campo poste_1
+        try:
+            poste_2_int = int(poste_2_str)  # Convertir a entero
+
+        except ValueError:
+            poste_2_int = None  # Manejar el caso donde la conversión falle
+            print(f"Error: 'poste_1' value '{poste_2_str}' is not an integer")
+
+        # bbdd_poste_2 = historial.objects.only('poste_2')
+        # print(bbdd_poste_2)
+
+
+        url_2 = f"https://zaragoza-pasobus.avanzagrupo.com/frm_esquemaparadatime.php?poste={poste_2_int}"
+
+        response_2 = requests.get(url_2)
+
+        response_2.encoding = response_2.apparent_encoding
+
+        datos_2 = response_2.text
+
+        soup = BeautifulSoup(datos_2, 'lxml')
+
+        digital_2 = [td.get_text() for td in soup.find_all('td', class_='digital')
+            if not td.find('svg') and td.attrs and td.get_text().strip() != ''
+    ]
+        mi_array_2  = digital_2
+        
+        linea_2 = mi_array_2[0::3]  
+        destino_2 = mi_array_2[1::3]  
+        tiempo_2 = mi_array_2[2::3]  
+
+        datos_2 = list(zip(linea_2, destino_2, tiempo_2))
+
+
+
+
+
+        # ---------------- VARIABLE PARA GUARDAR LA INFORMACION DE LOS POSTES  ---------------------------
+
+
+        context = {
+        'datos_1':datos_1, 
+        'datos_2':datos_2, 
+        # 'datos_3':datos_3, 
+        'ubicacion_historial':ubicacion_historial
+    }
+
+        # --------------------------- 03-08-2024 -------------------------------------
+
+        # PART 10.06 - historial de ubicaciones 
+        return render(request, 'ubicacion.html', context)
+    # PART 10.07 - En caso que no este autentificado
+    else:
+        messages.error(request,  'Tienes que iniciar session')
+        return redirect('inicio')

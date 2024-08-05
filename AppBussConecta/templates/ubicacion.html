@@ -29,6 +29,10 @@
 
 
 
+<!-- Repetir para datos_3, datos_4, etc. -->
+
+
+
 
 {% comment %} ----------------------------------------------------- {% endcomment %}
 
@@ -38,8 +42,8 @@
 
 <div class='container'>
 
-    <table class="table table-hover table-bordered bg-danger">
-        <thead class="shadow bg-danger">
+    <table class="table table-hover table-bordered bg-dark">
+        <thead class="shadow bg-dark">
             <tr>
                 <th scope="col" class='shadow text-center fw-bold fs-3 text-white'>{{ ubicacion_historial.inicio}}</th>
                 <th scope="col" class='shadow text-center fw-bold fs-3 text-white'>{{ ubicacion_historial.final}}</th>
@@ -58,9 +62,9 @@
         <div class="accordion" id="accordionPanelsStayOpenExample">
             <div class="accordion-item">
                 <h2 class="accordion-header">
-                    <button class=" text-center bg-info text-white fw-bold text-white accordion-button collapsed" type="button"
-                        data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false"
-                        aria-controls="panelsStayOpen-collapseOne">
+                    <button class=" text-center bg-info text-white fw-bold text-white accordion-button collapsed"
+                        type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne"
+                        aria-expanded="false" aria-controls="panelsStayOpen-collapseOne">
                         NOTAS
                     </button>
                 </h2>
@@ -84,7 +88,28 @@
                 </div>
             </div>
 
-            <br/>
+            <br />
+
+            {% comment %} ------------------------- BOTONES ---------------------------- {% endcomment %}
+
+
+            <div class='mb-3 d-flex justify-content-center'>
+                <button type="button" class="btn btn-secondary mx-3 px-3"><a href="{% url 'home' %}"
+                        class='text-white fw-bold' style="text-decoration:none;">Inicio</a></button>
+
+                <!-- PART 14.01 - tambien indicar el id del contenido a actualizar  actualizar -->
+
+                <button type="button" class="btn btn-success mx-3 px-3"><a
+                        href="{% url 'actualizar' ubicacion_historial.id %}" class='text-white fw-bold'
+                        style="text-decoration:none;">Actualizar </a></button>
+
+                <!-- PART 12.05 Poner la url y el ID a borrar -->
+
+                <button type="button" class="btn btn-danger mx-3 px-3"><a
+                        href="{% url 'borrar' ubicacion_historial.id %}" class='text-white fw-bold'
+                        style="text-decoration:none;">Borrar</a></button>
+            </div>
+
 
 
 
@@ -102,29 +127,36 @@
                     </thead>
 
                     <tbody>
-                        <!-- Espacio limpio -->
                     </tbody>
                 </table>
+                
+                <!-- Espacio limpio -->
 
 
                 {% comment %} PART 9.01 Tablas {% endcomment %}
                 <table class="table table-hover table-bordered">
                     <thead class="table-dark">
                         <tr>
+                            {% comment %} <th scope="col">Numero</th> {% endcomment %}
                             <th scope="col">linea</th>
-                            <th scope="col">Minutos</th>
                             <th scope="col">Destino a</th>
+                            <th scope="col">Minutos</th>
                         </tr>
                     </thead>
                     <tbody>
+                        {% for elementos_1 in datos_1  %}
                         <tr>
-                            {% comment %} PARA NO DEJARLO VARIO : SCRAPING VIENE AQUI {% endcomment %}
-                            <td> {{ ubicacion_historial.inicio}} </td>
 
-                            <td> {{ ubicacion_historial.final}} </td>
+                            {% comment %} <td scope='row'> {{ forloop.counter}} </td> {% endcomment %}
 
-                            <td> {{ ubicacion_historial.id}}</td>
+                            <td> {{ elementos_1.0}} </td>
+
+                            <td> {{ elementos_1.1 }} </td>
+
+                            <td> {{ elementos_1.2 }} </td>
+
                         </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
 
@@ -133,9 +165,22 @@
 
                 <!-- boton para el scraping -->
 
+                <!-- boton para el scraping -->
+
+                {% comment %} <form method='get' action={% url 'ubicacion' %}>
+
+                    <div class='align-self-start '>
+
+                        <button type='submit' class='btn  btn-outline-success mt-3' id='toggleTableButton_2'> llegada
+                            Bus </button>
+
+                    </div>
+
+                </form> {% endcomment %}
+                {% comment %}
                 <div class='align-self-start '>
                     <a href="#" class="btn  btn-outline-success mt-3" id="toggleTableButton_2">Bus llegada</a>
-                </div>
+                </div> {% endcomment %}
 
 
                 <!-- Espacio -->
@@ -167,42 +212,31 @@
                     </tbody>
                 </table>
 
-
-                {% comment %} PART 9.01 Tablas {% endcomment %}
                 <table class="table table-hover table-bordered">
                     <thead class="table-dark">
                         <tr>
+                            {% comment %} <th scope="col">Numero</th> {% endcomment %}
                             <th scope="col">linea</th>
-                            <th scope="col">Minutos</th>
                             <th scope="col">Destino a</th>
+                            <th scope="col">Minutos</th>
                         </tr>
                     </thead>
                     <tbody>
+                        {% for elementos_1 in datos_2  %}
                         <tr>
-                            {% comment %} PARA NO DEJARLO VARIO : SCRAPING VIENE AQUI {% endcomment %}
-                            <td> {{ ubicacion_historial.inicio}} </td>
 
-                            <td> {{ ubicacion_historial.final}} </td>
+                            {% comment %} <td scope='row'> {{ forloop.counter}} </td> {% endcomment %}
 
-                            <td> {{ ubicacion_historial.id}}</td>
+                            <td> {{ elementos_1.0}} </td>
+
+                            <td> {{ elementos_1.1 }} </td>
+
+                            <td> {{ elementos_1.2 }} </td>
+
                         </tr>
+                        {% endfor %}
                     </tbody>
-
                 </table>
-
-
-
-
-                <!-- boton para el scraping -->
-
-                <div class='align-self-start '>
-                    <a href="#" class="btn btn-outline-success mt-3" id="toggleTableButton_2">Bus llegada</a>
-                </div>
-
-
-                <!-- Espacio -->
-
-
 
 
             </div>
@@ -213,7 +247,7 @@
             {% comment %} -------------------------POSTE 3 PART 11 ---------------------------- {% endcomment %}
 
 
-            <div class='container'>
+            <div class='container mb-3'>
 
                 <table class="table table-hover table-bordered mt-2 ">
                     <thead class="table-light shadow">
@@ -229,33 +263,38 @@
                 </table>
 
 
-                {% comment %} PART 9.01 Tablas {% endcomment %}
-                <table class="table table-hover table-bordered">
+                <table class="table table-hover table-bordered mb-2">
                     <thead class="table-dark">
                         <tr>
+                            {% comment %} <th scope="col">Numero</th> {% endcomment %}
                             <th scope="col">linea</th>
-                            <th scope="col">Minutos</th>
                             <th scope="col">Destino a</th>
+                            <th scope="col">Minutos</th>
                         </tr>
                     </thead>
                     <tbody>
+                        {% for elementos_1 in datos_3  %}
                         <tr>
-                            {% comment %} PARA NO DEJARLO VARIO : SCRAPING VIENE AQUI {% endcomment %}
-                            <td> {{ ubicacion_historial.inicio}} </td>
 
-                            <td> {{ ubicacion_historial.final}} </td>
+                            {% comment %} <td scope='row'> {{ forloop.counter}} </td> {% endcomment %}
 
-                            <td> {{ ubicacion_historial.id}}</td>
+                            <td> {{ elementos_1.0}} </td>
+
+                            <td> {{ elementos_1.1 }} </td>
+
+                            <td> {{ elementos_1.2 }} </td>
+
                         </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
 
-                <!-- boton para el scraping -->
 
-                <div class='align-self-start mb-2 '>
-                    <a href="#" class="btn  btn-outline-success mt-3" id="toggleTableButton_2">Bus llegada</a>
-                </div>
                 <br/>
+                <br/>
+                <br/>
+                <br/>
+
 
 
                 <!-- Espacio -->
@@ -265,21 +304,96 @@
 
 
 
-        <!-- PART 11.01-->
-        <div class='mb-5 d-flex justify-content-end'>
-            <button type="button" class="btn btn-secondary mx-3 px-3"><a href="{% url 'home' %}"
-                    class='text-white fw-bold' style="text-decoration:none;">Inicio</a></button>
+            {% comment %} <!-- PART 11.01-->
+            <div class='mb-2 mt-2 d-flex justify-content-end'>
+                <button type="button" class="btn btn-secondary mx-3 px-3"><a href="{% url 'home' %}"
+                        class='text-white fw-bold' style="text-decoration:none;">Inicio</a></button>
 
-            <!-- PART 14.01 - tambien indicar el id del contenido a actualizar  actualizar -->
-             
-            <button type="button" class="btn btn-success mx-3 px-3"><a href="{% url 'actualizar' ubicacion_historial.id %}"
-                    class='text-white fw-bold' style="text-decoration:none;">Actualizar </a></button>
-           
-             <!-- PART 12.05 Poner la url y el ID a borrar -->
+                <!-- PART 14.01 - tambien indicar el id del contenido a actualizar  actualizar -->
+
+                <button type="button" class="btn btn-success mx-3 px-3"><a
+                        href="{% url 'actualizar' ubicacion_historial.id %}" class='text-white fw-bold'
+                        style="text-decoration:none;">Actualizar </a></button>
+
+                <!-- PART 12.05 Poner la url y el ID a borrar -->
+
+                <button type="button" class="btn btn-danger mx-3 px-3"><a
+                        href="{% url 'borrar' ubicacion_historial.id %}" class='text-white fw-bold'
+                        style="text-decoration:none;">Borrar</a></button>
+            </div>  {% endcomment %}
+
+
+            {% endblock  %}
+
+
+
+{% comment %} 
+
+
+TABLA IFORMACION ADICIONAL 
+
+
+
+
+                            {% if datos_1 %}
+                <h2>Datos del poste 1</h2>
+                <table>
+                    <tr>
+                        <th>Línea</th>
+                        <th>Destino</th>
+                        <th>Tiempo</th>
+                    </tr>
+                    {% for linea, destino, tiempo in datos_1 %}
+                    <tr>
+                        <td>{{ linea }}</td>
+                        <td>{{ destino }}</td>
+                        <td>{{ tiempo }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                {% endif %}
+
+                {% if datos_2 %}
+                <h2>Datos del poste 2</h2>
+                <table>
+                    <tr>
+                        <th>Línea</th>
+                        <th>Destino</th>
+                        <th>Tiempo</th>
+                    </tr>
+                    {% for linea, destino, tiempo in datos_2 %}
+                    <tr>
+                        <td>{{ linea }}</td>
+                        <td>{{ destino }}</td>
+                        <td>{{ tiempo }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                {% endif %}
+
+                {% if datos_3 %}
+                <h2>Datos del poste 2</h2>
+                <table>
+                    <tr>
+                        <th>Línea</th>
+                        <th>Destino</th>
+                        <th>Tiempo</th>
+                    </tr>
+                    {% for linea, destino, tiempo in datos_2 %}
+                    <tr>
+                        <td>{{ linea }}</td>
+                        <td>{{ destino }}</td>
+                        <td>{{ tiempo }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                {% endif %}
+                <!-- Espacio limpio -->
             
-            <button type="button" class="btn btn-danger mx-3 px-3"><a href="{% url 'borrar' ubicacion_historial.id %}"
-                    class='text-white fw-bold' style="text-decoration:none;">Borrar</a></button>
-        </div>
-
-
-        {% endblock  %}
+            
+            
+            
+            
+            
+            
+{% endcomment %}

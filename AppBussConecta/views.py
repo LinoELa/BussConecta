@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.shortcuts import get_object_or_404
+
 
 from django.shortcuts import redirect
 
@@ -18,6 +20,10 @@ from .models import historial
 # PART 13.14 
 from .formulario_registro import FormAgregar
 
+
+# SCRAPING
+from bs4 import BeautifulSoup
+import requests
 
 
 
@@ -141,19 +147,19 @@ def registro_user(request):
 
 # --------------------------------  PART 10 MODELOS INDIVIDUALES : VISTA ----------------------------------------------#
 
-# PART 10.02 - pk :; que aparece en la url ().../ubicacion/1)
-def historial_ubicacion(request, pk):
-    # PART 10.03 Revisar si  estas logeado  o NO
-    if request.user.is_authenticated:
-        #PART 10.4 Revisar las ubicaciones 
-        # PART 10.04 "GET" - id = Es el id automatico de las migraciones (id que queremos coger)
-        ubicacion_historial = historial.objects.get(id=pk)
-        # PART 10.06 - historial de ubicaciones 
-        return render(request, 'ubicacion.html', {'ubicacion_historial':ubicacion_historial})
-    # PART 10.07 - En caso que no este autentificado
-    else:
-        messages.error(request,  'Tienes que iniciar session')
-        return redirect('inicio')
+# # PART 10.02 - pk :; que aparece en la url ().../ubicacion/1)
+# def historial_ubicacion(request, pk):
+#     # PART 10.03 Revisar si  estas logeado  o NO
+#     if request.user.is_authenticated:
+#         #PART 10.4 Revisar las ubicaciones 
+#         # PART 10.04 "GET" - id = Es el id automatico de las migraciones (id que queremos coger)
+#         ubicacion_historial = historial.objects.get(id=pk)
+#         # PART 10.06 - historial de ubicaciones 
+#         return render(request, 'ubicacion.html', {'ubicacion_historial':ubicacion_historial})
+#     # PART 10.07 - En caso que no este autentificado
+#     else:
+#         messages.error(request,  'Tienes que iniciar session')
+#         return redirect('inicio')
 
 
 # PART 10.08 ir a la plantilla ubicacion.html
@@ -240,4 +246,65 @@ def actualizar_ubi_historial(request, pk):
 
 
     
+
+# --------------------------------- SCRAPING COMPLETO PRUEBA ----------------------------------------------#
+  
+
+#  FERACTORIZACION 1
+
+
+def obtener_datos_poste(poste_int):
+    url = f"https://zaragoza-pasobus.avanzagrupo.com/frm_esquemaparadatime.php?poste={poste_int}"
+    response = requests.get(url)
+    response.encoding = response.apparent_encoding
+
+    datos = response.text
+    soup = BeautifulSoup(datos, 'lxml')
+
+    digital = [
+        td.get_text() for td in soup.find_all('td', class_='digital')
+        if not td.find('svg') and td.attrs and td.get_text().strip() != ''
+    ]
+    
+    linea = digital[0::3]
+    destino = digital[1::3]
+    tiempo = digital[2::3]
+
+    return list(zip(linea, destino, tiempo))
+
+
+
+#  FERACTORIZACION 2
+
+
+def historial_ubicacion(request, pk):
+
+    if request.user.is_authenticated:
+        ubicacion_historial = get_object_or_404(historial, id=pk)
+
+        context = {
+            'ubicacion_historial': ubicacion_historial,
+        }
+
+        for i in range(1, 4):  # Suponiendo que hay hasta 10 postes
+            poste_str = getattr(ubicacion_historial, f'poste_{i}', None)
+            if poste_str:
+                try:
+                    poste_int = int(poste_str)
+                    datos = obtener_datos_poste(poste_int)
+                    context[f'datos_{i}'] = datos
+                except ValueError:
+                    print(f"Error: 'poste_{i}' value '{poste_str}' is not an integer")
+            else:
+                break
+
+        return render(request, 'ubicacion.html', context)
+    else:
+        messages.error(request, 'Tienes que iniciar sesión')
+        return redirect('inicio')
+
+
+
+# PART 10.08 ir a la plantilla ubicacion.html
+
 

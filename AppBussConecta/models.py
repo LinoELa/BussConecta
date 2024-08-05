@@ -38,7 +38,7 @@ class historial(models.Model):
 
     # 7.06 : Devolver lo que queremos mostrar en la pantalla 
     def __str__(self):
-        return (f'{self.inicio} {self.final}')
+        return (f'{self.inicio} {self.final} {self.poste_1} {self.poste_2}')
 
 
 

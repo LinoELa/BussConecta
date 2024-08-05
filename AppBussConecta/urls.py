@@ -31,5 +31,8 @@ urlpatterns = [
     path('agregar', views.agregar_ubi_historial , name='agregar'),
     # PART 14
     path('actualizar/<int:pk>', views.actualizar_ubi_historial , name='actualizar'),
+
+
+    # path('tabla/<int:pk>', views.tabla_view, name='tabla_view'),
     
 ]

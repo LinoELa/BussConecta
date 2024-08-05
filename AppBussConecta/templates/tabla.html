@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+{% comment %} Extender la base.html aqui {% endcomment %}
+<!-- PART 6 -->
+
+
+{% load static %}
+{% comment %} cargar las imagenes {% endcomment %}
+
+{% comment %} 10.09 {% endcomment %}
+{% block content %}
+
+
+
+
+{% comment %} --------------------------INICIO - FINAL PART 11. --------------------------- {% endcomment %}
+
+<div class='container'>
+
+    {% comment %} ---------------------------------- TABLA 1 ------------------- {% endcomment %}
+
+    <h2 class='container'> Tabla 1 </h2>
+
+    {% comment %} PART 9.01 Tablas {% endcomment %}
+    <table class="table table-hover table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">Numero</th>
+                <th scope="col">linea</th>
+                <th scope="col">Destino</th>
+                <th scope="col">Minutos</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for elementos in datos_1  %}
+            <tr>
+
+                <td scope='row'> {{ forloop.counter}} </td>
+
+                <td> {{ elementos.0}} </td>
+
+                <td> {{ elementos.1 }} </td>
+
+                <td> {{ elementos.2 }} </td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% comment %} ---------------------------------- TABLA 2 ------------------- {% endcomment %}
+
+    <!-- TABLA 2 -->
+    <h2 class='container'> Tabla 2 </h2>
+
+    <table class="table table-hover table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">Numero</th>
+                <th scope="col">linea</th>
+                <th scope="col">Destino</th>
+                <th scope="col">Minutos</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for elementos_2 in datos_2  %}
+
+            <tr>
+
+                <td scope='row'> {{ forloop.counter}} </td>
+
+                <td> {{ elementos_2.0}} </td>
+
+                <td> {{ elementos_2.1 }} </td>
+
+                <td> {{ elementos_2.2 }} </td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% comment %} ---------------------------------- TABLA 3 ------------------- {% endcomment %}
+
+    <h2 class='container'> Tabla 3 </h2>
+
+    <table class="table table-hover table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">Numero</th>
+                <th scope="col">linea</th>
+                <th scope="col">Destino</th>
+                <th scope="col">Minutos</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for elementos_3 in datos_3  %}
+            <tr>
+
+                <td scope='row'> {{ forloop.counter}} </td>
+
+                <td> {{ elementos_3.0}} </td>
+
+                <td> {{ elementos_3.1 }} </td>
+
+                <td> {{ elementos_3.2 }} </td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+    <!-- boton para el scraping -->
+
+    <form method='get' action={% url 'tabla_view' datos_1.id %} >
+
+        <div class='align-self-start '>
+
+            <button type='submit' class='btn  btn-outline-success mt-3' id='toggleTableButton_2'> Buss llegada </button>
+
+        </div>
+
+    </form>
+
+
+
+    <!-- Espacio -->
+
+
+
+</div>
+
+<br />
+
+
+
+{% endblock  %}
