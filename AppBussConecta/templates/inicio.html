@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% comment %} Extender la base.html aqui {% endcomment %}
-        <!-- PART 6 -->
+<!-- PART 6 -->
 
 
 {% load static %}
@@ -9,35 +9,38 @@
 
 {% block content  %}
 
-{% comment %} PART : 10 SI esta autentificado  {% endcomment %}
+{% comment %} PART : 10 SI esta autentificado {% endcomment %}
 {% if user.is_authenticated %}
+<div class='container'>
 
-<!-- Error 404 Template 1 -  -->
-<section class="mx-auto vh-100 d-flex justify-content-center align-items-center">
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
-          <div class="text-center">
-            <h2 class="d-flex justify-content-center align-items-center gap-2">
-              <span class="display-1 fw-bold">4</span>
-              <i class="bi bi-exclamation-circle-fill text-danger display-4"></i>
-              <span class="display-1 fw-bold bsb-flip-h">4</span>
-            </h2>
-            <h3 class="h2 mb-2">Oops! Estas perdido</h3>
-            <p class="mb-5">No se ha encontrado la página que busca</p>
-            <a class="btn bsb-btn-5xl btn-dark rounded-pill px-5 fs-6 m-0" href="{% url 'home' %}" role="button">Volver a Inicio</a>
-          </div>
+    <!-- Error 404 Template 1 -  -->
+    <section class="mx-auto vh-100 d-flex justify-content-center align-items-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="text-center">
+                        <h2 class="d-flex justify-content-center align-items-center gap-2">
+                            <span class="display-1 fw-bold">4</span>
+                            <i class="bi bi-exclamation-circle-fill text-danger display-4"></i>
+                            <span class="display-1 fw-bold bsb-flip-h">4</span>
+                        </h2>
+                        <h3 class="h2 mb-2">Oops! Estas perdido</h3>
+                        <p class="mb-5">No se ha encontrado la página que busca</p>
+                        <a class="btn bsb-btn-5xl btn-dark rounded-pill px-5 fs-6 m-0" href="{% url 'home' %}"
+                            role="button">Volver a Inicio</a>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
+
+</div>
 
 {% comment %} PART 10 Cuando no han iniciado session {% endcomment %}
 {% else %}
+<div class='container'>
 
-<main class="flex-shrink-0">
-
-
+    <main class="flex-shrink-0">
 
         <!-- Header-->
         <header class="py-5">
@@ -47,18 +50,23 @@
                         <!-- Header text content-->
                         <div class="text-center text-xxl-start">
                             <div class="badge bg-gradient-primary-to-secondary text-white mb-4">
-                                {% comment %} <div class="text-uppercase">Contacto &middot; Buss &middot; Informacion</div> {% endcomment %}
-                                <div class="">Contacto &middot; Buss &middot; Informacion</div>
+                                {% comment %} <div class="text-uppercase">Contacto &middot; Buss &middot; Informacion
+                                </div>
+                                {% endcomment %}
+                                <div class="">Contacto &middot; Bus &middot; Informacion</div>
                             </div>
                             <div class="fs-3 fw-light text-muted ">Te ayudamos a llegar siempre</div>
-                            <h1 class="display-3 fw-bolder mb-5"><span class="text-gradient d-inline  ">SUPER RAPIDO y 
+                            <h1 class="display-3 fw-bolder mb-5"><span class="text-gradient d-inline  ">SUPER RAPIDO y
                                     GRATIS</span></h1>
-                            <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xxl-start mb-3">
+
+                            {% comment %} Contacto & Informacion {% endcomment %}
+                            {% comment %} <div
+                                class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xxl-start mb-3">
                                 <a class="btn btn-outline-primary btn-lg px-5 py-3 me-sm-3 fs-6 fw-bolder"
-                                    href="resume.html">Contacto</a>
+                                    href="{% url 'home' %}">Contacto</a>
                                 <a class="btn btn-outline-dark btn-lg px-5 py-3 fs-6 fw-bolder"
                                     href="projects.html">Informacion</a>
-                            </div>
+                            </div> {% endcomment %}
                         </div>
                     </div>
                     <div class="col-xxl-7">
@@ -72,39 +80,45 @@
                 </div>
             </div>
         </header>
-    
-    
-        <!-- About Section-->
-        <section class="bg-white py-5">
-            <div class="container bg-white px-5">
-                <div class="row gx-5 justify-content-center">
-                    <div class="col-xxl-8">
-                        <div class="text-center my-5">
-                            <h2 class="display-5 fw-bolder"><span class="text-gradient d-inline">Sobre mi </span></h2>
-                            <p class="lead fw-light mb-4">Me llamo  Paulino S. Ela,  soy un Desarrollador de Software </p>
-                            <p class="text-muted">Llevo 4 - 5 años desarrollando diferentes tipos de software <br/> Este proyecto es algo especial, 
-                                porque esta dedicado a mi novia Axana <br/> para que pueda poner mejorarla la vida de alguna forma. 
-                                <br/>
-                                <br/>
-                                <strong> TE AMO <i class="bi bi-balloon-heart-fill"></i> </strong>
-                            </p>
-                            <div class="d-flex justify-content-center fs-2 gap-4">
-                                <a class="text-gradient" href="mailto:jamelarry22@gmail.com?Subject=Paulino%20S%20Ela%20"><i class="bi bi-envelope"></i></a>
-                                <a class="text-gradient" href="https://www.linkedin.com/in/lino-ela/"><i class="bi bi-linkedin"></i></a>
-                                <a class="text-gradient" href="https://github.com/LinoELa"><i class="bi bi-github"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+
     </main>
-    
-    
-    {% comment %} ----------------------------------- SECCION 2 ------------------------ {% endcomment %}
-    
+</div>
+{% comment %} ----------------------------------- SECCION 2 ------------------------ {% endcomment %}
+
+<!-- Call to action section-->
+<section class="py-5 bg-gradient-primary-to-secondary text-white">
+    <div class=" my-5">
+        <div class="text-center container">
+
+            <h2 class="display-4 fw-bolder mb-4">Para mi amor Axana <i class="bi bi-balloon-heart-fill"></i></h2>
+
+            <p class="lead fw-light mb-4 text-white">Desde Paulino Salvador Ela. <br/> Software Developer</p>
+
+            <br />
+
+            <div class="d-flex justify-content-center fs-2 gap-4">
+                <a class="text-white" href="mailto:jamelarry22@gmail.com?Subject=Paulino%20S%20Ela%20"><i
+                        class="bi bi-envelope"></i></a>
+                <a class="text-white " href="https://www.linkedin.com/in/lino-ela/"><i class="bi bi-linkedin"></i></a>
+                <a class="text-white" href="https://github.com/LinoELa"><i class="bi bi-github"></i></a>
+            </div>
+
+            <!-- espacio-->
+
+            <br />
+
+
+            <a class="btn btn-outline-light btn-lg px-5 py-3 fs-6 fw-bolder" target="_blank"
+                href=" https://wa.me/+34641237283?text=Hola%20desde%20Bus%20Conecta%20">Contactame</a>
+        </div>
+    </div>
+</section>
+
+{% comment %} ----------------------------------- SECCION 3 ------------------------ {% endcomment %}
+<div class='container'>
+
     <main class="flex-shrink-0">
-    
+
         <!-- Page Content-->
         <div class="container px-5 my-5">
             <div class="text-center mb-5">
@@ -112,96 +126,6 @@
             </div>
             <div class="row gx-5 justify-content-center">
                 <div class="col-lg-11 col-xl-9 col-xxl-8">
-                    <!-- Experience Section-->
-                    <section>
-                        <div class="d-flex align-items-center justify-content-between mb-4">
-                            <h2 class="text-primary fw-bolder mb-0">Experience</h2>
-                            <!-- Download resume button-->
-                            <!-- Note: Set the link href target to a PDF file within your project-->
-                            <a class="btn btn-primary px-4 py-3" href="#!">
-                                <div class="d-inline-block bi bi-download me-2"></div>
-                                Download Resume
-                            </a>
-                        </div>
-                        <!-- Experience Card 1-->
-                        <div class="card shadow border-0 rounded-4 mb-5">
-                            <div class="card-body p-5">
-                                <div class="row align-items-center gx-5">
-                                    <div class="col text-center text-lg-start mb-4 mb-lg-0">
-                                        <div class="bg-light p-4 rounded-4">
-                                            <div class="text-primary fw-bolder mb-2">2019 - Present</div>
-                                            <div class="small fw-bolder">Web Developer</div>
-                                            <div class="small text-muted">Stark Industries</div>
-                                            <div class="small text-muted">Los Angeles, CA</div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-8"><div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus laudantium, voluptatem quis repellendus eaque sit animi illo ipsam amet officiis corporis sed aliquam non voluptate corrupti excepturi maxime porro fuga.</div></div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Experience Card 2-->
-                        <div class="card shadow border-0 rounded-4 mb-5">
-                            <div class="card-body p-5">
-                                <div class="row align-items-center gx-5">
-                                    <div class="col text-center text-lg-start mb-4 mb-lg-0">
-                                        <div class="bg-light p-4 rounded-4">
-                                            <div class="text-primary fw-bolder mb-2">2017 - 2019</div>
-                                            <div class="small fw-bolder">SEM Specialist</div>
-                                            <div class="small text-muted">Wayne Enterprises</div>
-                                            <div class="small text-muted">Gotham City, NY</div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-8"><div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus laudantium, voluptatem quis repellendus eaque sit animi illo ipsam amet officiis corporis sed aliquam non voluptate corrupti excepturi maxime porro fuga.</div></div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                    <!-- Education Section-->
-                    <section>
-                        <h2 class="text-secondary fw-bolder mb-4">Education</h2>
-                        <!-- Education Card 1-->
-                        <div class="card shadow border-0 rounded-4 mb-5">
-                            <div class="card-body p-5">
-                                <div class="row align-items-center gx-5">
-                                    <div class="col text-center text-lg-start mb-4 mb-lg-0">
-                                        <div class="bg-light p-4 rounded-4">
-                                            <div class="text-secondary fw-bolder mb-2">2015 - 2017</div>
-                                            <div class="mb-2">
-                                                <div class="small fw-bolder">Barnett College</div>
-                                                <div class="small text-muted">Fairfield, NY</div>
-                                            </div>
-                                            <div class="fst-italic">
-                                                <div class="small text-muted">Master's</div>
-                                                <div class="small text-muted">Web Development</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-8"><div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus laudantium, voluptatem quis repellendus eaque sit animi illo ipsam amet officiis corporis sed aliquam non voluptate corrupti excepturi maxime porro fuga.</div></div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Education Card 2-->
-                        <div class="card shadow border-0 rounded-4 mb-5">
-                            <div class="card-body p-5">
-                                <div class="row align-items-center gx-5">
-                                    <div class="col text-center text-lg-start mb-4 mb-lg-0">
-                                        <div class="bg-light p-4 rounded-4">
-                                            <div class="text-secondary fw-bolder mb-2">2011 - 2015</div>
-                                            <div class="mb-2">
-                                                <div class="small fw-bolder">ULA</div>
-                                                <div class="small text-muted">Los Angeles, CA</div>
-                                            </div>
-                                            <div class="fst-italic">
-                                                <div class="small text-muted">Undergraduate</div>
-                                                <div class="small text-muted">Computer Science</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-8"><div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus laudantium, voluptatem quis repellendus eaque sit animi illo ipsam amet officiis corporis sed aliquam non voluptate corrupti excepturi maxime porro fuga.</div></div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
                     <!-- Divider-->
                     <div class="pb-5"></div>
                     <!-- Skills Section-->
@@ -212,35 +136,83 @@
                                 <!-- Professional skills list-->
                                 <div class="mb-5">
                                     <div class="d-flex align-items-center mb-4">
-                                        <div class="feature bg-primary bg-gradient-primary-to-secondary text-white rounded-3 me-3"><i class="bi bi-tools"></i></div>
-                                        <h3 class="fw-bolder mb-0"><span class="text-gradient d-inline">Habilidades Profesionales</span></h3>
+                                        <div
+                                            class="feature bg-primary bg-gradient-primary-to-secondary text-white rounded-3 me-3">
+                                            <i class="bi bi-tools"></i></div>
+                                        <h3 class="fw-bolder mb-0"><span class="text-gradient d-inline">Habilidades
+                                                Profesionales</span></h3>
                                     </div>
                                     <div class="row row-cols-1 row-cols-md-3 mb-4">
-                                        <div class="col mb-4 mb-md-0"><div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">Trabajo en equipo</div></div>
-                                        <div class="col mb-4 mb-md-0"><div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">Resolver Problemas</div></div>
-                                        <div class="col"><div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">Comunicacion</div></div>
+                                        <div class="col mb-4 mb-md-0">
+                                            <div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">Resolver
+                                                Problemas</div>
+                                        </div>
+                                        <div class="col mb-4 mb-md-0">
+                                            <div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">Trabajo
+                                                en
+                                                equipo</div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">
+                                                Comunicacion
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="row row-cols-1 row-cols-md-3">
-                                        <div class="col mb-4 mb-md-0"><div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">Critica Constructiva</div></div>
-                                        <div class="col mb-4 mb-md-0"><div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">Design Develop Deploy</div></div>
-                                        <div class="col"><div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">Ingles</div></div>
+                                        <div class="col mb-4 mb-md-0">
+                                            <div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">Critica
+                                                Constructiva</div>
+                                        </div>
+                                        <div class="col mb-4 mb-md-0">
+                                            <div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">Design
+                                                Develop Deploy</div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">Ingles
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <!-- Languages list-->
                                 <div class="mb-0">
                                     <div class="d-flex align-items-center mb-4">
-                                        <div class="feature bg-primary bg-gradient-primary-to-secondary text-white rounded-3 me-3"><i class="bi bi-code-slash"></i></div>
-                                        <h3 class="fw-bolder mb-0"><span class="text-gradient d-inline">Tecnologias</span></h3>
+                                        <div
+                                            class="feature bg-primary bg-gradient-primary-to-secondary text-white rounded-3 me-3">
+                                            <i class="bi bi-code-slash"></i></div>
+                                        <h3 class="fw-bolder mb-0"><span
+                                                class="text-gradient d-inline">Tecnologias</span>
+                                        </h3>
                                     </div>
                                     <div class="row row-cols-1 row-cols-md-3 mb-4">
-                                        <div class="col mb-4 mb-md-0"><div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">Html - Css - Bootstrap</div></div>
-                                        <div class="col mb-4 mb-md-0"><div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">Python - Django </div></div>
-                                        <div class="col"><div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">MySQL - SQLite3 </div></div>
+                                        <div class="col mb-4 mb-md-0">
+                                            <div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">Html -
+                                                Css -
+                                                Bootstrap</div>
+                                        </div>
+                                        <div class="col mb-4 mb-md-0">
+                                            <div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">Python -
+                                                Django </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">MySQL -
+                                                SQLite3 </div>
+                                        </div>
                                     </div>
                                     <div class="row row-cols-1 row-cols-md-3">
-                                        <div class="col mb-4 mb-md-0"><div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">Web Scraping</div></div>
-                                        <div class="col mb-4 mb-md-0"><div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">Git & Github</div></div>
-                                        <div class="col"><div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">Autentificacion</div></div>
+                                        <div class="col mb-4 mb-md-0">
+                                            <div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">Web
+                                                Scraping
+                                            </div>
+                                        </div>
+                                        <div class="col mb-4 mb-md-0">
+                                            <div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">Git &
+                                                Github
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">
+                                                Autentificacion</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -250,44 +222,54 @@
             </div>
         </div>
     </main>
-    {% comment %} ----------------------------------- SECCION 3  FOOOTER ------------------------ {% endcomment %} 
-    
-    
-    
-    
-    {% endif %} 
-    
-    <div class="bg-white">
-    
-        <div class="container">
-    
-            <footer>
-    
-                <div class="bg-white py-4 mt-auto">
-                    <div class="container px-5">
-                        <div class="row align-items-center justify-content-between flex-column flex-sm-row">
-                            <div class="col-auto"><div class="small m-0">Ela - Software Developer</div></div>
-                            <div class="col-auto mt-3">
-                                <a class="small text-body-secondary" href="https://github.com/LinoELa"><i class="bi bi-github"></i> 
-                                </a> <span class="mx-1">&middot;</span>
-    
-                                <a class="small text-body-secondary" href="https://www.linkedin.com/in/lino-ela/"><i class="bi bi-linkedin"></i></a>
-                                <span class="mx-1">&middot;</span>
-    
-                                <a class="medium text-body-secondary" href="mailto:jamelarry22@gmail.com?Subject=Paulino%20S%20Ela%20"><i class="bi bi-envelope"></i></a>
-                                <span class="mx-1">&middot;</span>
-                            </div>
+
+</div>
+{% comment %} ----------------------------------- SECCION 3 FOOOTER ------------------------ {% endcomment %}
+
+
+
+
+{% endif %}
+
+<div class="bg-white">
+
+    <div class="container">
+
+        <footer>
+
+            <div class="bg-white py-4 mt-auto">
+                <div class="container px-5">
+                    <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+                        <div class="col-auto">
+                            <div class="small m-0">Ela - Software Developer</div>
+                        </div>
+                        <div class="col-auto mt-3">
+                            <a class="small text-body-secondary" href="https://github.com/LinoELa"><i
+                                    class="bi bi-github"></i>
+                            </a> <span class="mx-1">&middot;</span>
+
+                            <a class="small text-body-secondary" href="https://www.linkedin.com/in/lino-ela/"><i
+                                    class="bi bi-linkedin"></i></a>
+                            <span class="mx-1">&middot;</span>
+
+                            <a class="medium text-body-secondary"
+                                href="mailto:jamelarry22@gmail.com?Subject=Paulino%20S%20Ela%20"><i
+                                    class="bi bi-envelope"></i></a>
+                            <span class="mx-1">&middot;</span>
                         </div>
                     </div>
                 </div>
-    
+            </div>
 
-                <div class='d-flex flex-wrap py-4 justify-content-around border-top'>
-                    <p> <span class='fw-bold' style="color:black;"> &copy; 2024 Todos los derechos reservados </span></p>
-                    <p> <span class='fw-bold' style="color:black;">Diseñado & Desarrollado - Paulino Salvador E. </span> </p>
-                </div>
-            </footer>
-        </div>
+
+            <div class='d-flex flex-wrap py-4 justify-content-around border-top'>
+                <p> <span class='fw-bold' style="color:black;"> &copy; 2024 Todos los derechos reservados </span></p>
+                <p> <span class='fw-bold' style="color:black;">Diseñado & Desarrollado - Paulino Salvador E. </span>
+                </p>
+            </div>
+        </footer>
     </div>
+</div>
+</main>
 
 {% endblock  %}
