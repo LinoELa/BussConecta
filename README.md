@@ -17,6 +17,22 @@
 - PART 14 - Actualizar (historial ubicaciones )
 - PART 15 - 
 
+##### Tecnologias 
+- Python
+- Django
+- LogIn
+- LogOut
+- Authentificacion
+- Beautiful Soup ( Bs4 )
+- Requests
+- Lxml
+- Html
+- Css
+- Bootstrap
+- SQLite3 (MySQL funciona igualmente)
+- Git & Github
+- Entorno Conda
+- 
 
 Despues de acabar con la parte basica que es mas en front end ahora hay que empezar hacer la web mas dinamica 
 
