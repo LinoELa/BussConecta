@@ -39,6 +39,13 @@ Craando la logica que funcionara para que se pueda realizar en el siguiente orde
     - django 
 
 
+### DEPLOY RENDER 
+Primero 
+https://docs.render.com/deploy-django#deploying-to-render
+
+
+Segundo
+https://docs.render.com/deploy-django#updating-an-existing-django-project
 
 ##### GIT & GITHUB 
 
@@ -413,3 +420,6 @@ def historial_ubicacion(request, pk):
     else:
         messages.error(request,  'Tienes que iniciar session')
         return redirect('inicio')
+
+
+
