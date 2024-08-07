@@ -2,3 +2,49 @@ db.sqlite3
 
 __pycache__
 
+# Ignorar los entornos de Conda
+envs/
+*.conda
+*.tar.bz2
+*.tar.gz
+
+# Ignorar directorios y archivos específicos de Conda
+conda-meta/
+pkgs/
+*.sh
+*.bat
+
+# Si tienes entornos de Conda en un directorio específico, añádelo aquí
+/path/to/your/conda/
+
+
+
+# Ignorar archivos de entorno de Conda
+envs/
+*.conda
+*.tar.bz2
+*.tar.gz
+
+# Ignorar directorios específicos de Conda
+conda-meta/
+pkgs/
+*.sh
+*.bat
+
+# Ignorar archivos y directorios en feedstock_root
+**/feedstock_root/**
+**/conda/** 
+
+# Ignorar configuraciones del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Ignorar archivos de compilación y dependencias
+node_modules/
+dist/
+build/
+
+# Ignorar archivos de entornos virtuales de Python
+venv/
+*.pyc
+__pycache__/
