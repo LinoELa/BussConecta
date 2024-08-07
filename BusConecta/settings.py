@@ -151,7 +151,7 @@ USE_TZ = True
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # URL y directorio para archivos estáticos
-STATIC_URL = '/static/'
+# STATIC_URL = '/static/'
 
 
 # # Directorios adicionales donde Django también buscará archivos estáticos
