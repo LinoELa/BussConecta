@@ -39,7 +39,7 @@ psycopg2-binary==2.9.9
 # Pygments @ file:///home/conda/feedstock_root/build_artifacts/pygments_1714846767233/work
 # python-dateutil @ file:///home/conda/feedstock_root/build_artifacts/python-dateutil_1709299778482/work
 pytz==2024.1
-pywin32==305.1
+# pywin32==305.1
 # pyzmq @ file:///C:/b/abs_89aq69t0up/croot/pyzmq_1705605705281/work
 requests==2.32.3
 setuptools==69.5.1
