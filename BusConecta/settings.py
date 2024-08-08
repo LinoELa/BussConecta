@@ -34,9 +34,10 @@ DEBUG = os.environ.get("DEBUG", "False").lower() == "True"
 
 
 # hago lo siguiente - ORIGINAL 
-ALLOWED_HOSTS = []
-#
-# ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
+# ALLOWED_HOSTS = []
+
+#Para produccon
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
 
 
 
