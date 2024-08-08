@@ -14,3 +14,11 @@ DATABASES = {
 ```
 
 - Creamos una migracion para probar si funcioan - python manage.py migrate
+
+- Tenemos que decirle a ovicon donde estan los archivos (staticfiles) - [urls.py] de proyecto
+
+
+- Ponemos los archivo MEDIA URL y STATIC URL 
+
+    STATIC_URL = 'static/'
+    MEDIA_URL = 'media/'
