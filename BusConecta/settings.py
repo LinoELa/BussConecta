@@ -7,6 +7,7 @@
 import os 
 #  Importamos el conector de PosterSQL
 import dj_database_url
+
 from pathlib import Path
 
 
@@ -22,13 +23,23 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECRET_KEY = 'django-insecure-f00zjvc(19s0#%zeah-1db&@3c4xn3haaj&mqq*lm^bj=y$0f4'
 
 # # Secret key de ------- RENDER  ----------------
-SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
-DEBUG = 'RENDER' not in os.environ
+# pra producccion : [ False]
+# DEBUG = False
+# Me ha interasado mucho para ver el error en produccion
+DEBUG = os.environ.get("DEBUG", "False").lower() == "True"
 
+
+# hago lo siguiente - ORIGINAL 
 ALLOWED_HOSTS = []
+#
+# ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
+
+
+
 # variable de entorno que da ------ RENDER ------- 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME:
@@ -91,14 +102,19 @@ WSGI_APPLICATION = 'BusConecta.wsgi.application'
 #     }
 # }
 
-# base de datos de : POSTGRESQL
+# base de datos de : POSTGRESQL - que he codigo de Render
 
+# DATABASES["default"] = dj_database_url.parse("postgresql://bbdd_bus_conecta_user:pdAYWFQ8GvBTJmXGLBMopdyasHRgTaUy@dpg-cqpro6g8fa8c73eliic0-a.oregon-postgres.render.com/bbdd_bus_conecta")
+database_url = os.environ.get("DATABASE_URL")
+
+# DATABASES["default"] = dj_database_url.parse(database_url)
 DATABASES = {
-    'default': dj_database_url.config(
+    'default': dj_database_url.parse(database_url)
+    # 'default': dj_database_url.parse("postgresql://bbdd_bus_conecta_user:pdAYWFQ8GvBTJmXGLBMopdyasHRgTaUy@dpg-cqpro6g8fa8c73eliic0-a.oregon-postgres.render.com/bbdd_bus_conecta")
         # Replace this value with your local database's connection string.
-        default='postgresql://postgres:postgres@localhost/postgres',
-        conn_max_age=600
-    )
+        # default='postgresql://postgres:postgres@localhost/postgres',
+        # conn_max_age=600
+
 }
 
 

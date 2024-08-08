@@ -11,15 +11,15 @@ from django.db import models
 class historial(models.Model):
 
     # 7.02 historial o informaicon de la fecha , para saber la hora que se ha creado 
-    tiempo_creado = models.DateTimeField(auto_now_add=True)
+    # tiempo_creado = models.DateTimeField(auto_now_add=True)
 
     # 7.03 Todo loque queremos guardar 
     inicio = models.CharField(max_length=50)
-    final = models.CharField(max_length=50)
+    final = models.CharField(max_length=50  )
     # --------------------- NUEVO SISTEMA ------------------
-    poste_1 = models.CharField(max_length=5)
-    poste_2 = models.CharField(max_length=5)
-    poste_3 = models.CharField(max_length=5)
+    poste_1 = models.CharField(max_length=5,  null=True, blank=True)
+    poste_2 = models.CharField(max_length=5,  null=True, blank=True)
+    poste_3 = models.CharField(max_length=5,  null=True, blank=True)
 
         # 7.04 Pongo IntegerField() porque exite : son los numeros de postes
         # 7.04 Validator funciona como rangos 
